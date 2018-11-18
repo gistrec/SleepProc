@@ -5,7 +5,7 @@
 // 2. Получаем все модули процесса
 // 3. Получаем имя процесса
 // 4. Вызываем функцию refresh() для обновления данных
-Process::Process(uint id) {
+Process::Process(uint id) : id(id) {
     // Получаем название процесса
     TCHAR processName[MAX_PATH] = TEXT("<unknown>");
 
