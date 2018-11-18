@@ -1,23 +1,23 @@
 #pragma once
+#include <Qobject>
+#include <QVariant>
+#include <QVariantList>
 
-class Process : public QObject {
-public:
+class Process {
+private:
     // Данные о процессе
-    enum Property {
-        ProcessName = 0,
-        ID,
-        CPUUsage,
-        MemoryUsage,
-        PropertyCount
-    };
+    QString name; // Название процесса
+    uint id;      // Идентефикатор
+    uint CPUUsage    = 0.f;  // Использование CPU
+    uint MemoryUsage = 0.f;  // Использование RAM
 
-
+public:
     /**
      * Создаем объект процесса
      * @param id - идентификатор процесса
      * @param parent
      */
-    explicit Process(unsigned int id, QObject* parent = nullptr);
+    explicit Process(uint id);
 
     /**
      * Обновляем данные о процессе
@@ -26,13 +26,10 @@ public:
     bool refresh();
 
     /**
-     * Получить свойство
-     * @param propertyName - название свойства
-     * @return значение свойства
+     * Функции для получения данных о процессе
      */
-    const QVariant & property(int propertyName);
-
-private:
-    // Список данных о процессе в порядке, как в enum Property:
-    QVariantList propertyList;
+    const QString& getName() const;
+    uint getId() const;
+    uint getCPUUsage() const;
+    uint getMemoryUsage() const;
 };
